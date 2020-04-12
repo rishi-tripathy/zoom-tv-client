@@ -1,15 +1,37 @@
 import React from 'react';
 import '../css/eventcard.scss';
+import axios from "axios"
 
 class EventCard extends React.Component {
   constructor(props) {
     // Initialize mutable state
     super(props);
     const currentTime = new Date();
-    this.state = { 
+    this.state = {
       tagsOutput: this.props.tags.join(", "),
       isCurrent: this.props.time[0] < currentTime && currentTime < this.props.time[1],
     };
+    this.fetchICS = this.fetchICS.bind(this)
+  }
+
+  fetchICS(id) {
+    axios.get('https://zoom-tv-guide.wl.r.appspot.com/download_ics/' + this.props.id, {
+        responseType: 'blob',
+        timeout: 30000
+      },
+    )
+      .then(({data}) => {
+        // handle success
+        const url = window.URL.createObjectURL(new Blob([data.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', this.props.summary + '.ics');
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((error) => {
+        // handle error
+      })
   }
 
   componentDidMount() {
@@ -33,8 +55,11 @@ class EventCard extends React.Component {
           {this.state.tagsOutput}
         </div>
         <div className="spacer"></div>
-        {!this.state.isCurrent && <button>Add Event</button>}
-        {this.state.isCurrent && <button class="zoom-blue">Join Now</button>}
+        {!this.state.isCurrent &&
+        <button style={{cursor: "pointer"}} onClick={ () => this.fetchICS(this.props.id)}>Add Event</button>}
+        {this.state.isCurrent && <a href={this.props.zoom}>
+          <button className="zoom-blue" style={{cursor: "pointer"}}>Join Now</button>
+        </a>}
       </div>
     );
   }
