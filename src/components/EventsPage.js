@@ -18,7 +18,7 @@ class EventsPage extends React.Component {
     this.setState({search: event.target.value, searchedEvents: []}, () => {
       const options = {
         threshold: .3,
-        keys: ['summary', 'creator', 'description', 'tags']
+        keys: ['summary', 'creator', 'description', 'tags', 'recurrence']
       }
       const fuse = new Fuse(this.state.events, options)
       let results = fuse.search(event.target.value)
@@ -118,16 +118,18 @@ class EventsPage extends React.Component {
               time={[event.start, event.end]}
               tags={event.tags}
               zoom={event.zoom}
+              recurrence={event.recurrence}
             />
           ))}
           {this.state.search.length !== 0 && this.state.searchedEvents.length === 0 && <h1 style={{color: '#AAA9A5'}} align={'left'}>No matches found. Please try another search!</h1>}
           {this.state.search.length !== 0 && this.state.searchedEvents.map(event => (
             <EventCard
-            summary={event.summary}
-            creator={event.creator}
-            description={event.description}
-            time={[event.start, event.end]}
-            tags={event.tags}
+              summary={event.summary} 
+              creator={event.creator} 
+              description={event.description} 
+              time={[event.start, event.end]}
+              tags={event.tags}
+              recurrence={event.recurrence}
             />
             ))}
             </div>
