@@ -10,7 +10,7 @@ class EventCard extends React.Component {
     super(props);
     const currentTime = new Date();
     this.state = {
-      tagsOutput: this.props.tags.join(", "),
+      tagsOutput: (this.props.tags.length > 0) ? this.props.tags.join(", ") : "None",
       isCurrent: this.props.time[0] < currentTime && currentTime < this.props.time[1],
     };
     this.fetchICS = this.fetchICS.bind(this)
@@ -39,7 +39,9 @@ class EventCard extends React.Component {
       <div className="event-card">
         <div className="card-header-container">
           <div className="card-header">{this.props.summary}</div>
-          <MaterialIcon icon="flag" size={20}/>
+          <div className="tooltip"><MaterialIcon icon="flag" size={20}/>
+            <span className="tooltiptext">Report</span>
+          </div>
         </div>
         <div className="card-subheader">{this.props.creator}</div>
         <div className="spacer"></div>
@@ -56,7 +58,7 @@ class EventCard extends React.Component {
         <div className="spacer"></div>
         <div className="spacer"></div>
         {!this.state.isCurrent &&
-        <button onClick={ () => this.fetchICS(this.props.id)}>Add Event</button>}
+        <a><button onClick={ () => this.fetchICS(this.props.id)}>Add Event</button></a>}
         {this.state.isCurrent && <a href={this.props.zoom}>
           <button className="zoom-blue">Join Now &nbsp;&nbsp;<span>▶</span></button>
         </a>}
