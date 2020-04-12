@@ -45,10 +45,11 @@ class EventCard extends React.Component {
           {this.state.tagsOutput}
         </div>
         <div className="spacer"></div>
+        <div className="spacer"></div>
         {!this.state.isCurrent &&
-        <button style={{cursor: "pointer"}} onClick={ () => this.fetchICS(this.props.id)}>Add Event</button>}
+        <button onClick={ () => this.fetchICS(this.props.id)}>Add Event</button>}
         {this.state.isCurrent && <a href={this.props.zoom}>
-          <button className="zoom-blue" style={{cursor: "pointer"}}>Join Now</button>
+          <button className="zoom-blue">Join Now</button>
         </a>}
       </div>
     );

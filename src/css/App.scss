@@ -1,6 +1,11 @@
 /* CUSTOM */
 a {
   text-decoration: none;
+  transition: color .3s;
+}
+
+a:hover {
+  color: #5A2BE9;
 }
 
 h1 {
@@ -34,7 +39,8 @@ input {
   border-width: 1px;
   border-color: #AAA9A5;
   font-weight: 400;
-  width: 100%;
+  width: 100%;  
+  transition: border-color .3s;
 }
 
 input:hover {
@@ -64,6 +70,13 @@ button {
   border-radius: 4px;
   font-weight: 500;
   border: none;
+  cursor: pointer;
+  transition: box-shadow .3s;
+}
+
+button:hover,
+button:focus {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.3); 
 }
 
 button:focus {
@@ -134,3 +147,4 @@ button:focus {
     transform: scale(1.0);
   }
 }
+
