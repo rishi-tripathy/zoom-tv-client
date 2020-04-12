@@ -17,15 +17,18 @@ class EventsPage extends React.Component {
     event.persist()
     this.setState({search: event.target.value, searchedEvents: []}, () => {
       const options = {
+        threshold: .3,
         keys: ['summary', 'creator', 'description', 'tags']
       }
-      
       const fuse = new Fuse(this.state.events, options)
-      
-      const results = fuse.search(event.target.value)
+      let results = fuse.search(event.target.value)
+      results = results.sort((a, b) => (a.refIndex - b.refIndex))
+      const list = [...this.state.searchedEvents]
       results.forEach((result) => {
-        this.setState({ searchedEvents: [...this.state.searchedEvents, result.item] })
+        list.push(result.item)
       })
+
+      this.setState({ searchedEvents: list })
     });
   }
 
@@ -57,8 +60,13 @@ class EventsPage extends React.Component {
     axios.get('https://zoom-tv-guide.wl.r.appspot.com/events')
       .then((response) => {
         // handle success
+        const newEvents = response.data.events.map((event) => {
+          event.start = new Date(event.start)
+          event.end = new Date(event.end)
+          return event
+        })
         this.setState({
-          events: response.data.events
+          events: newEvents
         })
       })
       .catch((error) => {
@@ -75,7 +83,7 @@ class EventsPage extends React.Component {
           <div className="search-container">
             <h1>Search</h1>
             <div className="spacer"></div>
-            <input type="search" placeholder="🔍 Search for event, tag, host, etc..." value={this.state.search} onChange={this.handleSearch} />
+            <input type="search" placeholder="🔍 Search for event, host, description, tag, etc..." value={this.state.search} onChange={this.handleSearch} />
           </div>
           <div className="date-container">
             <h1>Date</h1>
@@ -94,7 +102,7 @@ class EventsPage extends React.Component {
               summary={event.summary} 
               creator={event.creator} 
               description={event.description} 
-              time={[new Date(event.start), new Date(event.end)]}
+              time={[event.start, event.end]}
               tags={event.tags}
               zoom={event.zoom}
             />
@@ -104,7 +112,7 @@ class EventsPage extends React.Component {
               summary={event.summary} 
               creator={event.creator} 
               description={event.description} 
-              time={[new Date(event.start), new Date(event.end)]}
+              time={[event.start, event.end]}
               tags={event.tags}
             />
           ))}

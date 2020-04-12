@@ -1,11 +1,9 @@
 import React from 'react';
 import NavBar from './components/NavBar.js'
-import EventCard from './components/EventCard.js'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import EventsPage from './components/EventsPage.js'
 import './css/App.scss';
