@@ -31,6 +31,10 @@
   color: #000000;
 }
 
+@media (max-width: 800px) {
+  .right-nav  { width: 175px; }
+}
+
 .cta-button {
   border-radius: 8px;
   font-weight: 600;
