@@ -98,11 +98,13 @@ class EventsPage extends React.Component {
         <div className="cards">
           { this.state.searchedEvents.length === 0 && this.state.events.map(event => (
             <EventCard
+              id={event.id}
               summary={event.summary} 
               creator={event.creator} 
               description={event.description} 
               time={[event.start, event.end]}
               tags={event.tags}
+              zoom={event.zoom}
             />
           ))}
           { this.state.searchedEvents.length !== 0 && this.state.searchedEvents.map(event => (
