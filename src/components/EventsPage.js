@@ -14,50 +14,52 @@ class EventsPage extends React.Component {
   }
 
   handleSearch(event) {
-    this.setState({search: event.target.value});
-
-    const options = {
-      keys: ['summary', 'creator', 'description', 'tags']
-    }
-    
-    const fuse = new Fuse(this.state.events, options)
-    
-    const result = fuse.search(event.target.value)
-    this.setState({ searchedEvents: result })
+    event.persist()
+    this.setState({search: event.target.value, searchedEvents: []}, () => {
+      const options = {
+        keys: ['summary', 'creator', 'description', 'tags']
+      }
+      
+      const fuse = new Fuse(this.state.events, options)
+      
+      const results = fuse.search(event.target.value)
+      results.forEach((result) => {
+        this.setState({ searchedEvents: [...this.state.searchedEvents, result.item] })
+      })
+    });
   }
 
   componentDidMount() {
-    this.setState({
-      events: [
-        {
-          id: "alkjdfal;kjf",
-          summary: "Python Livestream",
-          start: "2020-04-11T18:00:00-07:00",
-          end: "2020-04-11T18:00:00-07:00",
-          creator: "HarvardCS50",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          tags: ['lecture', 'programming', 'learning'],
-          zoom: 'asdaflkfdjaldfja'
-        },
-        {
-          id: "alkjdfal;kjf",
-          summary: "Event with Hashtags",
-          start: "2020-04-11T18:00:00-07:00",
-          end: "2020-04-11T18:00:00-07:00",
-          creator: "rishiraj@gmail.com",
-          description: "A cool event!",
-          tags: ['cool', 'fun'],
-          zoom: 'asdaflkfdjaldfja',
-        },
-      ]
-    })
-
+    // this.setState({
+    //   events: [
+    //     {
+    //       id: "alkjdfal;kjf",
+    //       summary: "Python Livestream",
+    //       start: "2020-04-11T18:00:00-07:00",
+    //       end: "2020-04-11T18:00:00-07:00",
+    //       creator: "HarvardCS50",
+    //       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    //       tags: ['lecture', 'programming', 'learning'],
+    //       zoom: 'asdaflkfdjaldfja'
+    //     },
+    //     {
+    //       id: "alkjdfal;kjf",
+    //       summary: "Event with Hashtags",
+    //       start: "2020-04-11T18:00:00-07:00",
+    //       end: "2020-04-11T18:00:00-07:00",
+    //       creator: "rishiraj@gmail.com",
+    //       description: "A cool event!",
+    //       tags: ['cool', 'fun'],
+    //       zoom: 'asdaflkfdjaldfja',
+    //     },
+    //   ]
+    // })
     axios.get('https://zoom-tv-guide.wl.r.appspot.com/events')
       .then((response) => {
         // handle success
-        // this.setState({
-        //   events: response.data.events
-        // })
+        this.setState({
+          events: response.data.events
+        })
       })
       .catch((error) => {
         // handle error
@@ -87,6 +89,15 @@ class EventsPage extends React.Component {
         <div className="spacer"></div>
         <div className="cards">
           { this.state.searchedEvents.length === 0 && this.state.events.map(event => (
+            <EventCard
+              summary={event.summary} 
+              creator={event.creator} 
+              description={event.description} 
+              time={[new Date(event.start), new Date(event.end)]}
+              tags={event.tags}
+            />
+          ))}
+          { this.state.searchedEvents.length !== 0 && this.state.searchedEvents.map(event => (
             <EventCard
               summary={event.summary} 
               creator={event.creator} 
