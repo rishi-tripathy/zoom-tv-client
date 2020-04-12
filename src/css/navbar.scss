@@ -1,0 +1,41 @@
+.nav {
+  position: fixed;
+  width: 80%;
+  top: 0;
+  height: 72px;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0 10% 0 10%;
+}
+
+.logo {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 600;
+  color: #5A2BE9;
+}
+
+.right-nav {
+  width: 360px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+.right-nav a {
+  color: #000000;
+}
+.cta-button {
+  border-radius: 8px;
+  font-weight: 600;
+  color: #FFFFFF;
+  padding: 10px 32px 10px 32px;
+  background-color: #5A2BE9;
+}
+.cta-button a {
+  color: #FFFFFF;
+}
