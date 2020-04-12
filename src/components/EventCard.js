@@ -51,7 +51,7 @@ class EventCard extends React.Component {
         <div className="spacer"></div>
         <div className="spacer"></div>
         {!this.state.isCurrent &&
-        <button onClick={ () => this.fetchICS(this.props.id)}>Add Event</button>}
+        <a><button onClick={ () => this.fetchICS(this.props.id)}>Add Event</button></a>}
         {this.state.isCurrent && <a href={this.props.zoom}>
           <button className="zoom-blue">Join Now &nbsp;&nbsp;<span>▶</span></button>
         </a>}
