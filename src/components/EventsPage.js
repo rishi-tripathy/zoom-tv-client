@@ -89,9 +89,8 @@ class EventsPage extends React.Component {
     }
     return (
       <div className="top">
-                <div className="spacer"></div>
-                <div className="spacer"></div>
-
+        <div className="spacer"></div>
+        <div className="spacer"></div>
         <h1>Events</h1>
         <div className="spacer"></div>
         <div>The new channel surfing of the internet! zoomTV helps you share and find great Zoom events, meetings, and get-togethers.</div>
@@ -127,11 +126,13 @@ class EventsPage extends React.Component {
           {this.state.search.length !== 0 && this.state.searchedEvents.length === 0 && <h1 style={{color: '#AAA9A5'}} align={'left'}>No matches found. Please try another search!</h1>}
           {this.state.search.length !== 0 && this.state.searchedEvents.map(event => (
             <EventCard
+              id={event.id}
               summary={event.summary} 
               creator={event.creator} 
               description={event.description} 
               time={[event.start, event.end]}
               tags={event.tags}
+              zoom={event.zoom}
               recurrence={event.recurrence}
             />
             ))}
