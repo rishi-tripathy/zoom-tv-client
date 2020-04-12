@@ -11,6 +11,7 @@
     "fuse.js": "^5.1.0",
     "js-file-download": "^0.4.11",
     "lodash": "^4.17.15",
+    "material-icons-react": "^1.0.4",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/eventcard.scss';
 import axios from "axios"
+import MaterialIcon, {colorPalette} from 'material-icons-react';
 
 class EventCard extends React.Component {
   constructor(props) {
@@ -32,7 +33,10 @@ class EventCard extends React.Component {
     console.log(this.props.tags)
     return (
       <div className="event-card">
-        <div className="card-header">{this.props.summary}</div>
+        <div className="card-header-container">
+          <div className="card-header">{this.props.summary}</div>
+          <MaterialIcon icon="flag" size={20}/>
+        </div>
         <div className="card-subheader">{this.props.creator}</div>
         <div className="spacer"></div>
         <div>{this.props.description}</div>
@@ -49,7 +53,7 @@ class EventCard extends React.Component {
         {!this.state.isCurrent &&
         <button onClick={ () => this.fetchICS(this.props.id)}>Add Event</button>}
         {this.state.isCurrent && <a href={this.props.zoom}>
-          <button className="zoom-blue">Join Now</button>
+          <button className="zoom-blue">Join Now &nbsp;&nbsp;<span>▶</span></button>
         </a>}
       </div>
     );
