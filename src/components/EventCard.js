@@ -15,23 +15,13 @@ class EventCard extends React.Component {
   }
 
   fetchICS(id) {
-    axios.get('https://zoom-tv-guide.wl.r.appspot.com/download_ics/' + this.props.id, {
-        responseType: 'blob',
-        timeout: 30000
-      },
-    )
-      .then(({data}) => {
-        // handle success
-        const url = window.URL.createObjectURL(new Blob([data.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', this.props.summary + '.ics');
-        document.body.appendChild(link);
-        link.click();
-      })
-      .catch((error) => {
-        // handle error
-      })
+    const FileDownload = require('js-file-download');
+    axios.get('https://zoom-tv-guide.wl.r.appspot.com/download_ics/' + this.props.id).then(res => {
+      FileDownload(res.data, this.props.summary + '.ics');
+    })
+      .catch(function (error) {
+        alert('Export was not successful.');
+      });
   }
 
   componentDidMount() {

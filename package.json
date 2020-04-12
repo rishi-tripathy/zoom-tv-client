@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "fuse.js": "^5.1.0",
+    "js-file-download": "^0.4.11",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
