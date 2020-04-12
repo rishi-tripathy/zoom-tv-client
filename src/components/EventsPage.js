@@ -89,6 +89,16 @@ class EventsPage extends React.Component {
     }
     return (
       <div className="top">
+                <div className="spacer"></div>
+                <div className="spacer"></div>
+
+        <h1>Events</h1>
+        <div className="spacer"></div>
+        <div>The new channel surfing of the internet! zoomTV helps you share and find great Zoom events, meetings, and get-togethers.</div>
+        <div className="spacer"></div>
+        <div>To add your event to this page just invite our friendly service bot to your calendar event: <a href="mailto:zoom-tv-guide@appspot.gserviceaccount.com" className="text-link">zoom-tv-guide@appspot.gserviceaccount.com</a></div>
+        <div className="spacer"></div>
+        <div className="spacer"></div>
         <div className="spacer"></div>
         <div className="spacer"></div>
         <div className="filter-container">
@@ -98,14 +108,7 @@ class EventsPage extends React.Component {
             <input type="search" placeholder="🔍 Search for event, host, description, tag, etc..."
                    value={this.state.search} onChange={this.handleSearch}/>
           </div>
-          <div className="date-container">
-            <h1>Date</h1>
-            <div className="spacer"></div>
-            <input type="search" placeholder="4/11/2020"/>
-          </div>
         </div>
-        <div className="spacer"></div>
-        <div className="spacer"></div>
         <div className="spacer"></div>
         <div className="spacer"></div>
         <div className="cards">
