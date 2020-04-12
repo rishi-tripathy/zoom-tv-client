@@ -8,7 +8,7 @@ class EventCard extends React.Component {
     super(props);
     const currentTime = new Date();
     this.state = {
-      tagsOutput: this.props.tags.join(", "),
+      tagsOutput: (this.props.tags.length > 0) ? this.props.tags.join(", ") : "None",
       isCurrent: this.props.time[0] < currentTime && currentTime < this.props.time[1],
     };
     this.fetchICS = this.fetchICS.bind(this)
