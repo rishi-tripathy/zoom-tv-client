@@ -51,11 +51,7 @@ h1 {
   font-weight: 600;
 }
 
-.filter-container {
-  display: grid;
-  grid-gap: 16px;
-  grid-template-columns: repeat(3, 1fr);
-}
+
 
 .spacer {
   height: 8px;
@@ -70,6 +66,28 @@ button {
   border: none;
 }
 
+button:focus {
+  outline:none;
+}
+
 .footer {
   height: 100px;
+}
+
+.zoom-blue {
+  background-color: #2D8CFF;
+}
+
+.filter-container {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.search-container {
+  grid-column: 1 / 3;
+}
+
+.date-container {
+  grid-column: 3 / 3;
 }

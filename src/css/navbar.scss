@@ -21,14 +21,16 @@
 }
 
 .right-nav {
-  width: 360px;
+  width: 200px;
   justify-content: space-between;
   display: flex;
   align-items: center;
 }
+
 .right-nav a {
   color: #000000;
 }
+
 .cta-button {
   border-radius: 8px;
   font-weight: 600;
@@ -38,4 +40,8 @@
 }
 .cta-button a {
   color: #FFFFFF;
+}
+
+.active-link {
+  color: #5A2BE9 !important;
 }

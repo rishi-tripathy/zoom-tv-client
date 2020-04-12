@@ -1,17 +1,20 @@
 import React from 'react';
 import '../css/navbar.scss'
+import {
+  NavLink
+} from "react-router-dom";
 
 function NavBar() {
   return (
     <div className="nav">
-      <a href="/" className="logo">zoomTV</a>
+      <NavLink to="/" className="logo">zoomTV</NavLink>
       <div className="right-nav">
-        <a href="">events</a>
-        <a href="">saved</a>
-        <a href="">sign in</a>
-        <div className="cta-button">
-          <a href="">sign up</a>
-        </div>
+        <NavLink to="/about" activeClassName="active-link">about</NavLink>
+        <NavLink to="/events">
+          <div className="cta-button">
+            events
+          </div>
+        </NavLink>
       </div>
     </div>
   );
