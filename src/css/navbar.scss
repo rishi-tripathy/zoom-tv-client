@@ -37,6 +37,7 @@
   color: #FFFFFF;
   padding: 10px 32px 10px 32px;
   background-color: #5A2BE9;
+  transition: transform .3s, box-shadow .3s;
 }
 .cta-button a {
   color: #FFFFFF;
@@ -44,4 +45,10 @@
 
 .active-link {
   color: #5A2BE9 !important;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  box-shadow: 0 5px 11px rgba(33, 33, 33, 0.5); 
+  transform: translateY(-0.25em);
 }

@@ -9,7 +9,7 @@ class EventsPage extends React.Component {
   constructor(props) {
     // Initialize mutable state
     super(props);
-    this.state = { search: '', events: [], searchedEvents: [] };
+    this.state = { search: '', events: [], searchedEvents: [], isLoading: true };
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -66,7 +66,8 @@ class EventsPage extends React.Component {
           return event
         })
         this.setState({
-          events: newEvents
+          events: newEvents,
+          isLoading: false,
         })
       })
       .catch((error) => {
@@ -75,6 +76,17 @@ class EventsPage extends React.Component {
   }
   
   render() {
+    if (this.state.isLoading) {
+      return (
+        <div className="top">
+          <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+        </div>
+      )
+    }
     return (
       <div className="top">
         <div className="spacer"></div>
@@ -96,7 +108,7 @@ class EventsPage extends React.Component {
         <div className="spacer"></div>
         <div className="spacer"></div>
         <div className="cards">
-          { this.state.searchedEvents.length === 0 && this.state.events.map(event => (
+          { this.state.search.length === 0 && this.state.events.map(event => (
             <EventCard
               id={event.id}
               summary={event.summary} 
@@ -107,7 +119,7 @@ class EventsPage extends React.Component {
               zoom={event.zoom}
             />
           ))}
-          { this.state.searchedEvents.length !== 0 && this.state.searchedEvents.map(event => (
+          { this.state.search.length !== 0 && this.state.searchedEvents.map(event => (
             <EventCard
               summary={event.summary} 
               creator={event.creator} 

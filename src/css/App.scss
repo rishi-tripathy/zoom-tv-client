@@ -1,6 +1,11 @@
 /* CUSTOM */
 a {
   text-decoration: none;
+  transition: color .3s;
+}
+
+a:hover {
+  color: #5A2BE9;
 }
 
 h1 {
@@ -34,7 +39,8 @@ input {
   border-width: 1px;
   border-color: #AAA9A5;
   font-weight: 400;
-  width: 100%;
+  width: 100%;  
+  transition: border-color .3s;
 }
 
 input:hover {
@@ -64,6 +70,13 @@ button {
   border-radius: 4px;
   font-weight: 500;
   border: none;
+  cursor: pointer;
+  transition: box-shadow .3s;
+}
+
+button:hover,
+button:focus {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.3); 
 }
 
 button:focus {
@@ -91,3 +104,47 @@ button:focus {
 .date-container {
   grid-column: 3 / 3;
 }
+
+.spinner {
+  margin: 150px auto 0;
+  width: 400px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #AAA9A5;
+  margin: 0px 10px 0px 10px;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
