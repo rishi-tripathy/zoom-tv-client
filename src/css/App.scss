@@ -2,10 +2,19 @@
 a {
   text-decoration: none;
   transition: color .3s;
+  cursor: pointer;
 }
 
 a:hover {
   color: #5A2BE9;
+}
+
+.text-link {
+  color:  #5A2BE9;
+}
+
+.text-link:hover {
+  text-decoration: underline;
 }
 
 h1 {

@@ -5,6 +5,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import AboutPage from './components/AboutPage.js'
 import EventsPage from './components/EventsPage.js'
 import './css/App.scss';
 import './css/fonts.scss'
@@ -16,7 +17,10 @@ function App() {
         <NavBar/>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
+        <Switch>          
+          <Route path="/about">
+            <AboutPage />
+          </Route>
           <Route path="/">
             <EventsPage />
           </Route>

@@ -35,9 +35,7 @@ class EventCard extends React.Component {
       <div className="event-card">
         <div className="card-header-container">
           <div className="card-header">{this.props.summary}</div>
-          <div className="tooltip"><MaterialIcon icon="flag" size={20}/>
-            <span className="tooltiptext">Report</span>
-          </div>
+          <MaterialIcon icon="flag" size={20}/>
         </div>
         <div className="card-subheader">{this.props.creator}</div>
         <div className="spacer"></div>
