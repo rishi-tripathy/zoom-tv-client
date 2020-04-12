@@ -1,5 +1,5 @@
 import React from 'react';
-import { RRule, rrulestr } from 'rrule'
+import { rrulestr } from 'rrule'
 import '../css/eventcard.scss';
 import axios from "axios"
 import MaterialIcon, {colorPalette} from 'material-icons-react';
@@ -14,6 +14,22 @@ class EventCard extends React.Component {
       isCurrent: this.props.time[0] < currentTime && currentTime < this.props.time[1],
     };
     this.fetchICS = this.fetchICS.bind(this)
+  }
+
+  report(id) {
+    axios.post('http://zoom-tv-guide.wl.r.appspot.com/report', {
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: {
+      'eventId': id,
+    }
+  }).then(res => {
+        alert('Zoom meeting has been reported and will be reviewed.');
+    })
+      .catch(function (error) {
+        alert('Report was not successful.');
+      });
   }
 
   fetchICS(id) {
@@ -31,15 +47,17 @@ class EventCard extends React.Component {
     }
 
   render() {
-    // console.log(this.props.tags)
-    if (this.props.recurrence) {
-      console.log(rrulestr(this.props.recurrence[0]).toText())
-    }
     return (
       <div className="event-card">
         <div className="card-header-container">
           <div className="card-header">{this.props.summary}</div>
-          <MaterialIcon icon="flag" size={20}/>
+          <div className="tooltip" onClick= {
+                () => {
+                  return this.report(this.props.id);
+                }
+          }><MaterialIcon icon="flag" size={20}/>
+            <span className="tooltiptext">Report</span>
+          </div>
         </div>
         <div className="card-subheader">{this.props.creator}</div>
         <div className="spacer"></div>
