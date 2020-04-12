@@ -9,11 +9,15 @@
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "fuse.js": "^5.1.0",
+    "js-file-download": "^0.4.11",
+    "lodash": "^4.17.15",
+    "material-icons-react": "^1.0.4",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "rrule": "^2.6.4",
     "serve": "^11.3.0"
   },
   "scripts": {

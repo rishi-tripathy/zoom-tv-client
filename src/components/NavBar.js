@@ -10,7 +10,7 @@ function NavBar() {
       <NavLink to="/" className="logo">zoomTV</NavLink>
       <div className="right-nav">
         <NavLink to="/about" activeClassName="active-link">about</NavLink>
-        <NavLink to="/events">
+        <NavLink to="/">
           <div className="cta-button">
             events
           </div>
