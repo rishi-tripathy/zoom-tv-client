@@ -1,4 +1,5 @@
 import React from 'react';
+import { RRule, rrulestr } from 'rrule'
 import '../css/eventcard.scss';
 import axios from "axios"
 import MaterialIcon, {colorPalette} from 'material-icons-react';
@@ -25,17 +26,22 @@ class EventCard extends React.Component {
       });
   }
 
-  componentDidMount() {
+    componentDidMount() {
 
-  }
+    }
 
   render() {
-    console.log(this.props.tags)
+    // console.log(this.props.tags)
+    if (this.props.recurrence) {
+      console.log(rrulestr(this.props.recurrence[0]).toText())
+    }
     return (
       <div className="event-card">
         <div className="card-header-container">
           <div className="card-header">{this.props.summary}</div>
-          <MaterialIcon icon="flag" size={20}/>
+          <div className="tooltip"><MaterialIcon icon="flag" size={20}/>
+            <span className="tooltiptext">Report</span>
+          </div>
         </div>
         <div className="card-subheader">{this.props.creator}</div>
         <div className="spacer"></div>
@@ -43,6 +49,7 @@ class EventCard extends React.Component {
         <div className="spacer"></div>
         <div className="card-subheader">TIME</div>
         <div>{this.props.time[0].toLocaleString().replace(/(.*)\D\d+/, '$1').replace('/2020', '')} - {this.props.time[1].toLocaleString().replace(/(.*)\D\d+/, '$1').replace('/2020', '')}</div>
+        {this.props.recurrence && <div> {rrulestr(this.props.recurrence[0]).toText()}</div>}
         <div className="spacer"></div>
         <div className="card-subheader">TAGS</div>
         <div>
@@ -60,4 +67,4 @@ class EventCard extends React.Component {
   }
 }
 
-export default EventCard;
+        export default EventCard;
