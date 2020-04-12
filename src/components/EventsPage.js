@@ -9,7 +9,7 @@ class EventsPage extends React.Component {
   constructor(props) {
     // Initialize mutable state
     super(props);
-    this.state = { search: '', events: [], searchedEvents: [], isLoading: true };
+    this.state = {search: '', events: [], searchedEvents: [], isLoading: true};
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -28,7 +28,7 @@ class EventsPage extends React.Component {
         list.push(result.item)
       })
 
-      this.setState({ searchedEvents: list })
+      this.setState({searchedEvents: list})
     });
   }
 
@@ -74,7 +74,7 @@ class EventsPage extends React.Component {
         // handle error
       })
   }
-  
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -95,7 +95,8 @@ class EventsPage extends React.Component {
           <div className="search-container">
             <h1>Search</h1>
             <div className="spacer"></div>
-            <input type="search" placeholder="🔍 Search for event, host, description, tag, etc..." value={this.state.search} onChange={this.handleSearch} />
+            <input type="search" placeholder="🔍 Search for event, host, description, tag, etc..."
+                   value={this.state.search} onChange={this.handleSearch}/>
           </div>
           <div className="date-container">
             <h1>Date</h1>
@@ -108,32 +109,33 @@ class EventsPage extends React.Component {
         <div className="spacer"></div>
         <div className="spacer"></div>
         <div className="cards">
-          { this.state.search.length === 0 && this.state.events.map(event => (
+          {this.state.search.length === 0 && this.state.events.map(event => (
             <EventCard
               id={event.id}
-              summary={event.summary} 
-              creator={event.creator} 
-              description={event.description} 
+              summary={event.summary}
+              creator={event.creator}
+              description={event.description}
               time={[event.start, event.end]}
               tags={event.tags}
               zoom={event.zoom}
             />
           ))}
-          { this.state.search.length !== 0 && this.state.searchedEvents.map(event => (
+          {this.state.search.length !== 0 && this.state.searchedEvents.length === 0 && <h1 style={{color: '#AAA9A5'}} align={'left'}>No matches found. Please try another search!</h1>}
+          {this.state.search.length !== 0 && this.state.searchedEvents.map(event => (
             <EventCard
-              summary={event.summary} 
-              creator={event.creator} 
-              description={event.description} 
-              time={[event.start, event.end]}
-              tags={event.tags}
+            summary={event.summary}
+            creator={event.creator}
+            description={event.description}
+            time={[event.start, event.end]}
+            tags={event.tags}
             />
-          ))}
-        </div>
-        <div className="footer">
-        </div>
-      </div>
-    );
-  }
-}
+            ))}
+            </div>
+            <div className="footer">
+            </div>
+            </div>
+            );
+            }
+            }
 
-export default EventsPage;
+            export default EventsPage;
