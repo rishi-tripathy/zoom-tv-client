@@ -20,6 +20,9 @@ function App() {
           <Route path="/">
             <EventsPage />
           </Route>
+          <Route path="/about">
+            <AboutPage />
+          </Route>
         </Switch>
       </div>
     </Router>
