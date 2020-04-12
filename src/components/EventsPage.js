@@ -108,7 +108,7 @@ class EventsPage extends React.Component {
         <div className="spacer"></div>
         <div className="spacer"></div>
         <div className="cards">
-          { this.state.searchedEvents.length === 0 && this.state.events.map(event => (
+          { this.state.search.length === 0 && this.state.events.map(event => (
             <EventCard
               id={event.id}
               summary={event.summary} 
@@ -119,7 +119,7 @@ class EventsPage extends React.Component {
               zoom={event.zoom}
             />
           ))}
-          { this.state.searchedEvents.length !== 0 && this.state.searchedEvents.map(event => (
+          { this.state.search.length !== 0 && this.state.searchedEvents.map(event => (
             <EventCard
               summary={event.summary} 
               creator={event.creator} 
