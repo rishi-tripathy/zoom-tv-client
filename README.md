@@ -1,5 +1,5 @@
 # [zoomTV](zoomtv.live)
-This repo contains the client-side code for [zoomTV](https://zoomtv.live). For server-side code, take a look our other [repo](https://github.com/rishi-tripathy/zoom-tv-server).
+This repo contains the client-side code for [zoomTV](http://www.zoomtv.live). For server-side code, take a look our other [repo](https://github.com/rishi-tripathy/zoom-tv-server).
 
 ## What is zoomTV?
 The new channel surfing of the internet! zoomTV helps you share and find great Zoom events, meetings, and get-togethers.
