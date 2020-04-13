@@ -1,7 +1,9 @@
 import React from 'react';
 import '../css/AboutPage.scss'
+import ReactGA from "react-ga";
 
 function AboutPage() {
+  ReactGA.pageview(window.location.pathname + window.location.search);
   return (
     <div className="about-container">
       <div className="about-hero">
