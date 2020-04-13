@@ -2,6 +2,7 @@ import React from 'react';
 import Fuse from "fuse.js";
 import EventCard from './EventCard.js'
 import axios from "axios"
+import ReactGA from "react-ga"
 import '../css/App.scss';
 import '../css/fonts.scss'
 
@@ -33,6 +34,7 @@ class EventsPage extends React.Component {
   }
 
   componentDidMount() {
+    ReactGA.pageview(window.location.pathname + window.location.search);
     // this.setState({
     //   events: [
     //     {
@@ -88,6 +90,7 @@ class EventsPage extends React.Component {
       )
     }
     return (
+
       <div className="top">
         <div className="spacer"></div>
         <div className="spacer"></div>
@@ -127,9 +130,9 @@ class EventsPage extends React.Component {
           {this.state.search.length !== 0 && this.state.searchedEvents.map(event => (
             <EventCard
               id={event.id}
-              summary={event.summary} 
-              creator={event.creator} 
-              description={event.description} 
+              summary={event.summary}
+              creator={event.creator}
+              description={event.description}
               time={[event.start, event.end]}
               tags={event.tags}
               zoom={event.zoom}
