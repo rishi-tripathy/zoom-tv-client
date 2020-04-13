@@ -9,6 +9,12 @@ import AboutPage from './components/AboutPage.js'
 import EventsPage from './components/EventsPage.js'
 import './css/App.scss';
 import './css/fonts.scss'
+import ReactGA from "react-ga";
+
+function initializeReactGA() {
+  ReactGA.initialize('UA-163504365-1')
+  ReactGA.pageview('/');
+}
 
 function App() {
   return (

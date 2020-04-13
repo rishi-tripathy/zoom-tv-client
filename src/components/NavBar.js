@@ -1,13 +1,10 @@
 import React from 'react';
-import ReactGA from 'react-ga';
+
 import '../css/navbar.scss'
 import {
   NavLink
 } from "react-router-dom";
-function initializeReactGA() {
-  ReactGA.initialize('UA-163504365-1')
-  ReactGA.pageview('/');
-}
+
 function NavBar() {
   return (
     <div className="nav">
